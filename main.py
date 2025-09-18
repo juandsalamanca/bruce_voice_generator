@@ -1,60 +1,12 @@
 import streamlit as st
 from elevenlabs.client import ElevenLabs
-import streamlit_authenticator as stauth
 import yaml
-from yaml.loader import SafeLoader
 import pydub
 from pydub import AudioSegment
 from io import BytesIO
 
-with open('config.yaml') as file:
-  config = yaml.load(file, Loader=SafeLoader)
-	
-authenticator = stauth.Authenticate(
-	config['credentials'],
-	config['cookie']['name'],
-	config['cookie']['key'],
-	config['cookie']['expiry_days'],
-	config['preauthorized']
-)
-
-if not st.session_state.authentication_status:
-  st.info('Please Login from the Home page.')
-  home=st.button(label='Go home')
-  if home:
-    st.switch_page('voiss.py')
-  st.stop()
-
-
 st.header('Cloned Voice Generator')
 
-st.sidebar.write("Select scenario")
-sc11=st.sidebar.button('Scenario 11')
-if sc11:
-    st.switch_page('pages/10_scenario_11_AI_feedback.py')
-sc13=st.sidebar.button(label='Scenario 13')
-if sc13:
-    st.switch_page('pages/13_scenario_13_AI_feedback.py')
-sc34=st.sidebar.button(label='Scenario 34')
-if sc34:
-    st.switch_page('pages/8_scenario_34_AI_feedback.py')
-sc35=st.sidebar.button(label='Scenario 35')
-if sc35:
-    st.switch_page('pages/11_scenario_35_AI_feedback.py')
-sc37=st.sidebar.button(label='Scenario 37')
-if sc37:
-    st.switch_page('pages/14_scenario_37_AI_feedback.py')
-sc57=st.sidebar.button(label='Scenario 57')
-if sc57:
-    st.switch_page('pages/17_scenario_57_AI_feedback.py')
-sc84=st.sidebar.button(label='Scenario 84')
-if sc84:
-    st.switch_page('pages/16_scenario_84_AI_feedback.py')
-
-response=st.sidebar.button(label="Response Tracking")
-if response:
-    st.switch_page('pages/tables.py') 
-authenticator.logout('Logout', 'main')
 @st.cache_data
 def verified_tts(text):
   client = ElevenLabs(api_key=st.secrets["ELEVEN_LABS_KEY"])
