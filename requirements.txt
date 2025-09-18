@@ -1,4 +1,6 @@
 elevenlabs
+pyaudioop
 pydub
+pydub[audio]
 PyYAML
 streamlit
