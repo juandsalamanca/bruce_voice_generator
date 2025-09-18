@@ -1,7 +1,5 @@
 elevenlabs
 ffmpeg-python
-pyaudioop
 pydub
-pydub[audio]
 PyYAML
 streamlit
